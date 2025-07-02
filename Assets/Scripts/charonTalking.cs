@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class charonTalking : MonoBehaviour
@@ -7,10 +8,18 @@ public class charonTalking : MonoBehaviour
     [SerializeField] private GameObject firstDialogue;
 
     [SerializeField] private GameObject playerFirstChoice;
+    [SerializeField] private GameObject playerPizzaChoice;
 
-    //[SerializeField] private GameObject secondDialogue;
+    [SerializeField] private GameObject playerChoiceA;
 
-    //[SerializeField] private GameObject thirdDialogue;
+    [SerializeField] private GameObject playerChoiceB;
+
+    [SerializeField] private GameObject playerChoiceC;
+
+    [SerializeField] private GameObject askPizzaCharon;
+
+    [SerializeField] private GameObject pizzaChoice1;
+    [SerializeField] private GameObject pizzaChoice2;
 
     private playerPickUpObject playerPickUpObject;
 
@@ -60,25 +69,78 @@ public class charonTalking : MonoBehaviour
 
    
 
-    void Talk()
+    public void Talk()
     {
         firstDialogue.SetActive(true);
         firstDialoguePlayed = true;
         playerPickUpObject.ActivateinDialouge();
-        playerFirstChoice.SetActive(true);
+
+
+        StartCoroutine(ShowChoiceAfterDelay(1.5f)); // 1-second delay
 
     }
 
+    private IEnumerator ShowChoiceAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        playerFirstChoice.SetActive(true);
+    }
 
+    public void FirstChoice()
+    {
+        playerChoiceA.SetActive(true);
+        Debug.Log("first");
+        firstDialogue.SetActive(false);
+        playerFirstChoice.SetActive(false);
+    }
 
+    public void SecondChoice()
+    {
+        playerChoiceB.SetActive(true);
+        Debug.Log("second");
+        firstDialogue.SetActive(false);
+        playerFirstChoice.SetActive(false);
+    }
 
-    // charon: Ahh, a new one. Who are you
-    // player: I am here to deliver a pizza to Hades
-    // charon: mmh smells delicious, mind if a grab a piece?
-    // player: CHOIDE: GIVE A SLICE - DONT GIVE
-    // Charon: Whatever, no drahma no pass.
-    // player: a what?
-    // Charon: Agh, i am sick of this why no one has their drahmas lately. I will create one for you, i need 2 soul stones. Dont be late!
-    // Player: CHOICE: Soul stones? What is this a joke? - OK.
-    // Charon: If CHOICED 1ST ONE: Just find some glowy stones man, believe me you will understand when you see them.
+    public void ThirdChoice()
+    {
+        playerChoiceC.SetActive(true);
+        Debug.Log("third");
+        firstDialogue.SetActive(false);
+        playerFirstChoice.SetActive(false);
+    }
+
+    public void AskForPizza()
+    {
+        playerChoiceA.SetActive(false);
+        playerChoiceB.SetActive(false);
+        playerChoiceC.SetActive(false);
+
+        askPizzaCharon.SetActive(true);
+
+        StartCoroutine(ShowAfterDelay(0.5f)); // 1-second delay
+
+    }
+
+    private IEnumerator ShowAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        playerPizzaChoice.SetActive(true);
+    }
+
+    public void pizzaChoiceA()
+    {
+        playerPizzaChoice.SetActive(false);
+        askPizzaCharon.SetActive(false);
+        pizzaChoice1.SetActive(true);
+    }
+
+    public void pizzaChoiceB()
+    {
+        playerPizzaChoice.SetActive(false);
+        askPizzaCharon.SetActive(false);
+        pizzaChoice2.SetActive(true);
+
+    }
+
 }
