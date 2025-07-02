@@ -132,6 +132,7 @@ public class charonTalking : MonoBehaviour
     {
         playerPizzaChoice.SetActive(false);
         askPizzaCharon.SetActive(false);
+
         pizzaChoice1.SetActive(true);
     }
 
