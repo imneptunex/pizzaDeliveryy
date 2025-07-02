@@ -1,4 +1,0 @@
-repository "pizzaDeliveryy/pizzaDeliveryy@18967407449762@cloud"
-  path "/"
-    br "/main"
-    co "/main"
