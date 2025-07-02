@@ -6,6 +6,8 @@ public class charonTalking : MonoBehaviour
 
     [SerializeField] private GameObject firstDialogue;
 
+    [SerializeField] private GameObject playerFirstChoice;
+
     //[SerializeField] private GameObject secondDialogue;
 
     //[SerializeField] private GameObject thirdDialogue;
@@ -22,6 +24,7 @@ public class charonTalking : MonoBehaviour
 
         firstDialoguePlayed = false;
         firstDialogue.SetActive(false);
+        playerFirstChoice.SetActive(false);
         //secondDialogue.SetActive(false);
         //thirdDialogue.SetActive(false);
         playerPickUpObject.DeActivateinDialouge();
@@ -62,6 +65,7 @@ public class charonTalking : MonoBehaviour
         firstDialogue.SetActive(true);
         firstDialoguePlayed = true;
         playerPickUpObject.ActivateinDialouge();
+        playerFirstChoice.SetActive(true);
 
     }
 
