@@ -86,7 +86,7 @@ public class charonTalking : MonoBehaviour
         playerPickUpObject.ActivateinDialouge();
 
 
-        StartCoroutine(ShowChoiceAfterDelay(1.5f)); // 1-second delay
+        StartCoroutine(ShowChoiceAfterDelay(0.5f)); // 1-second delay
 
     }
 
