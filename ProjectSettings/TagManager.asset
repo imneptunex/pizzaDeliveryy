@@ -10,6 +10,9 @@ TagManager:
   - Cheese
   - Oil
   - PizzaRecover
+  - FirstMissionDoor
+  - FirstMissionRightDoor
+  - FirstMissionLeftDoor
   layers:
   - Default
   - TransparentFX

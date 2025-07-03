@@ -5,6 +5,8 @@ public class playerPickUpObject : MonoBehaviour
 
     [SerializeField] private LayerMask pickUpLayerMask;
     [SerializeField] private LayerMask interactLayerMask;
+    [SerializeField] private LayerMask headerLayerMask;
+    [SerializeField] private GameObject interactionHeader;
 
     private objectGrabable objectGrabable;
     private objectInteractable objectInteractable;
@@ -20,49 +22,125 @@ public class playerPickUpObject : MonoBehaviour
     public bool inDialouge;
 
     private bool holding = false;
+
+    private charonTalking charonTalking;
+
+    [System.Obsolete]
+    private void Start()
+    {
+        charonTalking = FindObjectOfType<charonTalking>();
+    }
+
+
     void Update()
     {
+        CheckGrabable();
 
+        CheckInteractwhileGrab();
+
+        DropObject();
+
+        CheckGrabHeader();
+
+        if (inDialouge)
+        {
+            interactionHeader.SetActive(false);
+        }
+
+    }
+
+    public void ActivateinDialouge()
+    {
+        inDialouge = true;
+    }
+
+    public void DeActivateinDialouge()
+    {
+        inDialouge = false;
+    }
+
+    private void CheckGrabable()
+    {
         if (Input.GetKeyDown(KeyCode.E))
-        {     
-           if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out RaycastHit raycastHit, pickupdistance, pickUpLayerMask))
+        {
+            if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out RaycastHit raycastHitt, pickupdistance, pickUpLayerMask))
             {
-                    if(objectGrabable == null)
+
+                Debug.Log("pressed");
+                if (raycastHitt.transform.TryGetComponent(out objectGrabable))
+                {
+
+                    objectGrabable.Grab(objectGrabPointTransform);
+                    grabbing = true;
+
+                    currentObjectSO = raycastHitt.transform.GetComponent<objectGrabable>().objectsSO;
+                    heldObject = raycastHitt.transform.gameObject;
+                    holding = true;
+
+                }
+
+                if (raycastHitt.transform.TryGetComponent(out objectInteractable))
+                {
+                    if(charonTalking.missionActive)
                     {
-                        if (raycastHit.transform.TryGetComponent(out objectGrabable))
+                        if (raycastHitt.transform.CompareTag("FirstMissionRightDoor"))
                         {
-
-                            objectGrabable.Grab(objectGrabPointTransform);
-                            grabbing = true;
-
-                            currentObjectSO = raycastHit.transform.GetComponent<objectGrabable>().objectsSO;
-                            heldObject = raycastHit.transform.gameObject;
-                        holding = true;
+                            raycastHitt.transform.rotation = Quaternion.Euler(0f, 162f, 0f);
+                            raycastHitt.transform.gameObject.layer = LayerMask.NameToLayer("Default");
+                            raycastHitt.transform.tag = "Untagged";
 
                         }
-
-                        if(raycastHit.transform.TryGetComponent(out objectInteractable))
+                        else if (raycastHitt.transform.CompareTag("FirstMissionLeftDoor"))
                         {
-                        Debug.Log("just interacting");
-                        objectInteractable.Interact();
+                            raycastHitt.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                            raycastHitt.transform.gameObject.layer = LayerMask.NameToLayer("Default");
+                            raycastHitt.transform.tag = "Untagged";
                         }
-
                     }
                     
-                    
+
+                    objectInteractable.Interact();
+                }
+
             }
 
         }
+    }
 
 
-        if(Input.GetKeyDown(KeyCode.E) && holding)
+
+    private void CheckGrabHeader()
+    {
+        
+        if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out RaycastHit raycastHit, pickupdistance, headerLayerMask))
+        {
+            if (raycastHit.transform.TryGetComponent(out objectInteractable))
+            {
+                interactionHeader.SetActive(true);
+
+                //check
+
+            }
+        }
+        else
+        {
+            interactionHeader.SetActive(false);
+        }
+
+       
+
+    }
+
+    private void CheckInteractwhileGrab()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && holding)
         {
             Debug.Log("holding");
 
-            if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out RaycastHit raycastHit, pickupdistance, interactLayerMask))
+            if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out RaycastHit raycastHi, pickupdistance, interactLayerMask))
             {
-                if(raycastHit.transform.TryGetComponent(out objectInteractable))
-                 {
+                if (raycastHi.transform.TryGetComponent(out objectInteractable))
+                {
                     Debug.Log("holding and interacting");
                     objectInteractable.Interact();
 
@@ -78,9 +156,13 @@ public class playerPickUpObject : MonoBehaviour
 
         }
 
+    }
+
+    private void DropObject()
+    {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(objectGrabable != null)
+            if (objectGrabable != null)
             {
                 objectGrabable.Drop();
                 objectGrabable = null;
@@ -91,37 +173,8 @@ public class playerPickUpObject : MonoBehaviour
                 currentObjectSO = null;
                 holding = false;
             }
-            
+
         }
 
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-    public void ActivateinDialouge()
-    {
-        inDialouge = true;
-    }
-
-   public void DeActivateinDialouge()
-    {
-        inDialouge = false;
-    }
-
-
-
-
 }

@@ -16,6 +16,13 @@ public class objectInteractable : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+
+
+
+    }
+
     public void Interact()
     {
         
@@ -30,6 +37,8 @@ public class objectInteractable : MonoBehaviour
         
 
     }
+
+   
 
 
 }

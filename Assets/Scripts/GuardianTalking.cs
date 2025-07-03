@@ -25,6 +25,7 @@ public class GuardianTalking : MonoBehaviour
     public float doorRotationSpeed = 2f;
 
     public bool openDoors = false;
+
     private Quaternion door1TargetRotation;
     private Quaternion door2TargetRotation;
 

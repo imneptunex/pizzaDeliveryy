@@ -32,6 +32,8 @@ public class charonTalking : MonoBehaviour
 
     [SerializeField] private GameObject SoulStoneMission;
 
+    public bool missionActive;
+
     private playerPickUpObject playerPickUpObject;
 
     public bool firstDialoguePlayed;
@@ -40,6 +42,7 @@ public class charonTalking : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
+        missionActive = false;
         playerPickUpObject = FindObjectOfType<playerPickUpObject>();
 
         firstDialoguePlayed = false;
@@ -219,6 +222,7 @@ public class charonTalking : MonoBehaviour
 
         playerPickUpObject.DeActivateinDialouge();
         SoulStoneMission.SetActive(true);
+        missionActive = true;
     }
 
 }
