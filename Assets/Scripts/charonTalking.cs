@@ -21,6 +21,17 @@ public class charonTalking : MonoBehaviour
     [SerializeField] private GameObject pizzaChoice1;
     [SerializeField] private GameObject pizzaChoice2;
 
+    [SerializeField] private GameObject playerDrahma;
+    [SerializeField] private GameObject charonSoul1;
+    [SerializeField] private GameObject charonSoul2;
+    [SerializeField] private GameObject playerDrahmaChoice;
+    [SerializeField] private GameObject charonDrahmaA;
+    [SerializeField] private GameObject charonDrahmaB;
+    [SerializeField] private GameObject charonDrahmaC;
+    [SerializeField] private GameObject charonDrahmaD;
+
+    [SerializeField] private GameObject SoulStoneMission;
+
     private playerPickUpObject playerPickUpObject;
 
     public bool firstDialoguePlayed;
@@ -34,8 +45,7 @@ public class charonTalking : MonoBehaviour
         firstDialoguePlayed = false;
         firstDialogue.SetActive(false);
         playerFirstChoice.SetActive(false);
-        //secondDialogue.SetActive(false);
-        //thirdDialogue.SetActive(false);
+        
         playerPickUpObject.DeActivateinDialouge();
     }
 
@@ -142,6 +152,73 @@ public class charonTalking : MonoBehaviour
         askPizzaCharon.SetActive(false);
         pizzaChoice2.SetActive(true);
 
+    }
+
+    public void playerDrahmaText()
+    {
+        pizzaChoice1.SetActive(false);
+        pizzaChoice2.SetActive(false);
+
+        playerDrahma.SetActive(true);
+
+    }
+    public void CharonSoul1()
+    {
+        playerDrahma.SetActive(false);
+        charonSoul1.SetActive(true);
+
+
+    }
+    public void CharonSoul2()
+    {
+        charonSoul1.SetActive(false);
+        charonSoul2.SetActive(true);
+
+        StartCoroutine(ShowAfterTheDelay(0.5f));
+    }
+    private IEnumerator ShowAfterTheDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        playerDrahmaChoice.SetActive(true);
+    }
+    public void CharonSoulOptA()
+    {
+        charonSoul2.SetActive(false);
+        playerDrahmaChoice.SetActive(false);
+
+        charonDrahmaA.SetActive(true);
+    }
+    public void CharonSoulOptB()
+    {
+        charonSoul2.SetActive(false);
+        playerDrahmaChoice.SetActive(false);
+
+        charonDrahmaB.SetActive(true);
+    }
+    public void CharonSoulOptC()
+    {
+        charonSoul2.SetActive(false);
+        playerDrahmaChoice.SetActive(false);
+
+        charonDrahmaC.SetActive(true);
+    }
+    public void CharonSoulOptD()
+    {
+        charonSoul2.SetActive(false);
+        playerDrahmaChoice.SetActive(false);
+
+        charonDrahmaD.SetActive(true);
+    }
+
+    public void ExitDialougeCharon()
+    {
+        charonDrahmaA.SetActive(false);
+        charonDrahmaB.SetActive(false);
+        charonDrahmaC.SetActive(false);
+        charonDrahmaD.SetActive(false);
+
+        playerPickUpObject.DeActivateinDialouge();
+        SoulStoneMission.SetActive(true);
     }
 
 }
