@@ -7,9 +7,11 @@ public class playerPickUpObject : MonoBehaviour
     [SerializeField] private LayerMask interactLayerMask;
     [SerializeField] private LayerMask headerLayerMask;
     [SerializeField] private GameObject interactionHeader;
+    [SerializeField] private GameObject selectionHeader;
 
     private objectGrabable objectGrabable;
     private objectInteractable objectInteractable;
+    private StatueTrigger statueTrigger;
     public ObjectSO currentObjectSO;
 
     private GameObject heldObject;
@@ -121,11 +123,22 @@ public class playerPickUpObject : MonoBehaviour
                 //check
 
             }
+            if(raycastHit.transform.TryGetComponent(out statueTrigger))
+            {
+                //Debug.Log("log");
+                //interactionHeader.SetActive(true);
+                selectionHeader.SetActive(true);
+            }
+
+
         }
         else
         {
             interactionHeader.SetActive(false);
+            selectionHeader.SetActive(false);
         }
+
+
 
        
 
@@ -135,7 +148,7 @@ public class playerPickUpObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && holding)
         {
-            Debug.Log("holding");
+            
 
             if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out RaycastHit raycastHi, pickupdistance, interactLayerMask))
             {
