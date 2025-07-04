@@ -10,17 +10,30 @@ public class StatueTrigger : MonoBehaviour
     [SerializeField] private GameObject shoulderwomenStatue;
     [SerializeField] private GameObject womenStatue;
 
+    [SerializeField] private GameObject SoulStone;
+
+    [SerializeField] private GameObject offFX;
+    [SerializeField] private GameObject onFX;
+
     private playerPickUpObject playerPickUpObject;
 
     private void Start()
     {
         playerPickUpObject = GameObject.Find("Player").GetComponent<playerPickUpObject>();
+        offFX.SetActive(false);
+        SoulStone.SetActive(false);
     }
     private void Update()
     {
         if (playerInZone && Input.GetKeyDown(KeyCode.E))
         {
             Talk();
+
+        }
+
+        if (playerInZone && Input.GetKeyDown(KeyCode.F))
+        {
+            SelectStatue();
 
         }
 
@@ -81,5 +94,24 @@ public class StatueTrigger : MonoBehaviour
         shoulderwomenStatue.SetActive(false);
 
         playerPickUpObject.DeActivateinDialouge();
+    }
+
+    void SelectStatue()
+    {
+        
+         if (this.CompareTag("man"))
+        {
+            Debug.Log("correct");
+            SoulStone.SetActive(true);
+            offFX.SetActive(false);
+            onFX.SetActive(true);
+
+        }
+         else
+        {
+            Debug.Log("select again");
+        }
+       
+        
     }
 }

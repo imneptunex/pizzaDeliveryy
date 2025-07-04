@@ -97,6 +97,7 @@ public class playerPickUpObject : MonoBehaviour
                             raycastHitt.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                             raycastHitt.transform.gameObject.layer = LayerMask.NameToLayer("Default");
                             raycastHitt.transform.tag = "Untagged";
+
                         }
                     }
                     
