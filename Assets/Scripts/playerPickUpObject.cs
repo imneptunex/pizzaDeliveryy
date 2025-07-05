@@ -9,6 +9,9 @@ public class playerPickUpObject : MonoBehaviour
     [SerializeField] private GameObject interactionHeader;
     [SerializeField] private GameObject selectionHeader;
 
+    [SerializeField] private GameObject weaponWheel;
+    [SerializeField] private GameObject statBar;
+
     private objectGrabable objectGrabable;
     private objectInteractable objectInteractable;
     private StatueTrigger statueTrigger;
@@ -53,11 +56,15 @@ public class playerPickUpObject : MonoBehaviour
 
     public void ActivateinDialouge()
     {
+        weaponWheel.SetActive(false);
+        statBar.SetActive(false);
         inDialouge = true;
     }
 
     public void DeActivateinDialouge()
     {
+        weaponWheel.SetActive(true);
+        statBar.SetActive(true);
         inDialouge = false;
     }
 

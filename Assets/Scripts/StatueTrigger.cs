@@ -20,7 +20,7 @@ public class StatueTrigger : MonoBehaviour
     private void Start()
     {
         playerPickUpObject = GameObject.Find("Player").GetComponent<playerPickUpObject>();
-        offFX.SetActive(false);
+        offFX.SetActive(true);
         SoulStone.SetActive(false);
     }
     private void Update()
