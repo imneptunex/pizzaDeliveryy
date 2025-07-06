@@ -556,8 +556,6 @@ GameObject:
   - component: {fileID: 8261394091351836162}
   - component: {fileID: 8404598182403735595}
   - component: {fileID: 366974465101174015}
-  - component: {fileID: 6132643232771728568}
-  - component: {fileID: 3434167305496487113}
   - component: {fileID: 8176929830361940807}
   m_Layer: 8
   m_Name: PlayerArmature
@@ -829,37 +827,18 @@ MonoBehaviour:
   interactLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  headerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  interactionHeader: {fileID: 0}
+  selectionHeader: {fileID: 0}
+  weaponWheel: {fileID: 0}
+  statBar: {fileID: 0}
   currentObjectSO: {fileID: 0}
   grabbing: 0
   objectGrabPointTransform: {fileID: 1130811846943041044}
   raycastPoint: {fileID: 0}
   inDialouge: 0
---- !u!114 &6132643232771728568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3092581986606332155}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d04338f5c16a5420aad2cc30051cafdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasSword: 0
-  oldSword: {fileID: 5799362151987086473}
---- !u!114 &3434167305496487113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3092581986606332155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23ce3f0835ee4ae7aa7a734d3ceb77c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8176929830361940807
 MonoBehaviour:
   m_ObjectHideFlags: 0
