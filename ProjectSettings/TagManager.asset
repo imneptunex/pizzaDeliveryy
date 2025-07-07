@@ -18,6 +18,8 @@ TagManager:
   - man
   - women
   - carryWomen
+  - GoldStone
+  - RedStone
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,8 @@ public class playerPickUpObject : MonoBehaviour
     [SerializeField] private GameObject weaponWheel;
     [SerializeField] private GameObject statBar;
 
-    private ItemSlot itemSlot;
+    private InventoryAddObject inventoryAddObject;
+    private Item item;
 
     public Inventory inventoryHotbar;
 
@@ -39,7 +40,8 @@ public class playerPickUpObject : MonoBehaviour
     private void Start()
     {
         charonTalking = FindObjectOfType<charonTalking>();
-        itemSlot = FindObjectOfType<ItemSlot>();
+        item = FindObjectOfType<Item>();
+        inventoryAddObject = FindObjectOfType<InventoryAddObject>();
     }
 
 
@@ -60,6 +62,7 @@ public class playerPickUpObject : MonoBehaviour
 
     }
 
+    
     public void ActivateinDialouge()
     {
         weaponWheel.SetActive(false);
@@ -81,7 +84,8 @@ public class playerPickUpObject : MonoBehaviour
             if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out RaycastHit raycastHitt, pickupdistance, pickUpLayerMask))
             {
 
-                Debug.Log("pressed");
+                //check if the object can be grabable
+                
                 if (raycastHitt.transform.TryGetComponent(out objectGrabable))
                 {
 
@@ -92,14 +96,27 @@ public class playerPickUpObject : MonoBehaviour
                     heldObject = raycastHitt.transform.gameObject;
                     holding = true;
 
-                    if (raycastHitt.transform.TryGetComponent(out itemSlot))
+                    //Check if the object can be addded to inventory
+                    if (raycastHitt.transform.TryGetComponent(out item))
                     {
+                        if (raycastHitt.transform.CompareTag("GoldStone"))
+                        {
+                            inventoryAddObject.GoldStone();
+                            
+                        }
+                        if (raycastHitt.transform.CompareTag("RedStone"))
+                        {
+                            inventoryAddObject.RedStone();
+                            
+                        }
+
                         inventoryHotbar.AddItem(currentObjectSO.Icon);
                         Destroy(raycastHitt.transform.gameObject);
                     }
 
                 }
 
+                //check if the object is interactable
                 if (raycastHitt.transform.TryGetComponent(out objectInteractable))
                 {
                     if(charonTalking.missionActive)

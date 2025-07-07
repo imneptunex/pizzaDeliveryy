@@ -114,4 +114,6 @@ public class StatueTrigger : MonoBehaviour
        
         
     }
+
+
 }
