@@ -106,6 +106,8 @@ public class StatueTrigger : MonoBehaviour
             offFX.SetActive(false);
             onFX.SetActive(true);
 
+            
+
         }
          else
         {
