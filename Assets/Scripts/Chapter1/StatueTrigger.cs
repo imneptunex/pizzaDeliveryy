@@ -15,6 +15,13 @@ public class StatueTrigger : MonoBehaviour
     [SerializeField] private GameObject offFX;
     [SerializeField] private GameObject onFX;
 
+
+    [SerializeField] private AudioSource statueAudioSource;
+    [SerializeField] private AudioClip royalClip;
+    [SerializeField] private AudioClip manClip;
+    [SerializeField] private AudioClip womenClip;
+    [SerializeField] private AudioClip carryClip;
+
     private playerPickUpObject playerPickUpObject;
 
     private void Start()
@@ -62,24 +69,28 @@ public class StatueTrigger : MonoBehaviour
     {
         if (this.CompareTag("royal"))
         {
+            PlayVoice(royalClip);
             royalStatue.SetActive(true);
             playerPickUpObject.ActivateinDialouge();
 
         }
         else if (this.CompareTag("man"))
         {
+            PlayVoice(manClip);
             manStatue.SetActive(true);
             playerPickUpObject.ActivateinDialouge();
 
         }
         else if (this.CompareTag("women"))
         {
+            PlayVoice(womenClip);
             womenStatue.SetActive(true);
             playerPickUpObject.ActivateinDialouge();
 
         }
         else if (this.CompareTag("carryWomen"))
         {
+            PlayVoice(carryClip);
             shoulderwomenStatue.SetActive(true);
             playerPickUpObject.ActivateinDialouge();
 
@@ -115,6 +126,14 @@ public class StatueTrigger : MonoBehaviour
         }
        
         
+    }
+
+
+    private void PlayVoice(AudioClip clip)
+    {
+        if (clip == null) return;
+        statueAudioSource.clip = clip;
+        statueAudioSource.Play();
     }
 
 

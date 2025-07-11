@@ -25,7 +25,7 @@ public class playerPickUpObject : MonoBehaviour
 
     private GameObject heldObject;
     public bool grabbing = false;
-    private float pickupdistance = 10f;
+    private float pickupdistance = 7f;
 
     [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private Transform raycastPoint;
