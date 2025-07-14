@@ -39,8 +39,6 @@ public class EquipmentSystem : MonoBehaviour
 
         // Spawn weapon in hand, destroy sheath version
         currentWeaponInHand = Instantiate(weapon, weaponHolder.transform);
-
-        if (currentWeaponInSheath != null)
             Destroy(currentWeaponInSheath);
     }
 
@@ -48,10 +46,18 @@ public class EquipmentSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
-        // Spawn weapon in sheath, destroy hand version
+   
         currentWeaponInSheath = Instantiate(weapon, weaponSheath.transform);
-
-        if (currentWeaponInHand != null)
             Destroy(currentWeaponInHand);
     }
+
+    public void StartDealDamage()
+    {
+        currentWeaponInHand.GetComponentInChildren<DamageDealer>().StartDealDamage();
+    }
+    public void EndDealDamage()
+    {
+        currentWeaponInHand.GetComponentInChildren<DamageDealer>().EndDealDamage();
+    }
+
 }

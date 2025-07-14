@@ -53,12 +53,12 @@ namespace Synty.AnimationBaseLocomotion.Samples.InputSystem
         {
             if (!_weaponDrawn)
             {
-                Debug.Log("Cannot attack: weapon not drawn!");
+                
                 return;
             }
 
             _animator.SetTrigger("attack");
-            Debug.Log("Attack triggered!");
+            
         }
     }
 }
