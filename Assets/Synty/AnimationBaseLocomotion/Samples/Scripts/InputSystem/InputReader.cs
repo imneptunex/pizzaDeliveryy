@@ -37,6 +37,7 @@ namespace Synty.AnimationBaseLocomotion.Samples.InputSystem
 
         public Action onWalkToggled;
 
+
         /// <inheritdoc cref="OnEnable" />
         private void OnEnable()
         {
@@ -164,6 +165,16 @@ namespace Synty.AnimationBaseLocomotion.Samples.InputSystem
 
             onLockOnToggled?.Invoke();
             onSprintDeactivated?.Invoke();
+        }
+
+        void Controls.IPlayerActions.OnDrawWeapon(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        void Controls.IPlayerActions.OnAttack(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }

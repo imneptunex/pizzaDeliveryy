@@ -19,6 +19,6 @@ MonoBehaviour:
     boneName: Prop_R
     socketName: Prop_R_Socket
     rotationOffset: {x: 359.52396, y: 359.89847, z: 269.71255}
-    scalar: 1.0000013
+    scale: 0
     scaleCalculationBone1: Hand_R
     scaleCalculationBone2: Elbow_R
