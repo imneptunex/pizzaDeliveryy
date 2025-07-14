@@ -14,6 +14,7 @@ public class SkeletonEnemy : MonoBehaviour
     [SerializeField] float attackCD = 3f;
     [SerializeField] float attackRange = 1f;
     [SerializeField] float aggroRange = 4f;
+    [SerializeField] GameObject hitVFX;
 
     NavMeshAgent agent;
     float timePassed;
@@ -52,7 +53,7 @@ public class SkeletonEnemy : MonoBehaviour
     }
     public void TakeDamage(float damageAmount)
     {
-        Debug.Log("damage");
+       
         health -= damageAmount;
         animator.SetTrigger("damage");
 
@@ -60,6 +61,22 @@ public class SkeletonEnemy : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void StartDealDamage()
+    {
+        GetComponentInChildren<EnemyDamageDealerMarker>().StartDealDamage();
+    }
+
+    public void EndDealDamage()
+    {
+        GetComponentInChildren<EnemyDamageDealerMarker>().EndDealDamage();
+    }
+
+    public void HitVFX(Vector3 hitPosition)
+    {
+        GameObject hit = Instantiate(hitVFX, hitPosition, Quaternion.identity);
+        Destroy(hit, 3f);
     }
 
     void Die()

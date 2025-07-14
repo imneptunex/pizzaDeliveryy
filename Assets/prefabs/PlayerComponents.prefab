@@ -1595,6 +1595,7 @@ GameObject:
   - component: {fileID: 3626672911843929864}
   - component: {fileID: 8259940701268023256}
   - component: {fileID: 9185839450405944730}
+  - component: {fileID: 9124396205506289098}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1927,6 +1928,20 @@ MonoBehaviour:
   weaponHolder: {fileID: 5323281552500266953}
   weapon: {fileID: 1530859087307534, guid: ca8d427b471a77745835639d65f3c276, type: 3}
   weaponSheath: {fileID: 147213639239456438}
+--- !u!114 &9124396205506289098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361512023071250918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51bfa6c325e39497f9fef39ea752b0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  hitVFX: {fileID: 5997728688699947380, guid: a28d58c63b761469a91ac09fed253055, type: 3}
 --- !u!1 &6532118838401195402
 GameObject:
   m_ObjectHideFlags: 0

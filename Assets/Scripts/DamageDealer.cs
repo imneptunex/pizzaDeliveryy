@@ -22,23 +22,21 @@ public class DamageDealer : MonoBehaviour
         {
             RaycastHit hit;
 
-            int layerMask = 1 << 26; // ✅ Correct layer!
+            int layerMask = 1 << 26; 
 
             if (Physics.Raycast(transform.position, -transform.up, out hit, weaponLength, layerMask))
             {
-                Debug.Log("Raycast hit: " + hit.transform.name);
+                
 
                 if (hit.transform.TryGetComponent(out SkeletonEnemy skeletonEnemy) && !hasDealtDamage.Contains(hit.transform.gameObject))
                 {
-                    Debug.Log("debug");
+                   
                     skeletonEnemy.TakeDamage(weaponDamage);
+                    skeletonEnemy.HitVFX(hit.point);
                     hasDealtDamage.Add(hit.transform.gameObject);
                 }
             }
-            else
-            {
-                Debug.Log("Raycast hit nothing");
-            }
+            
         }
     }
 
