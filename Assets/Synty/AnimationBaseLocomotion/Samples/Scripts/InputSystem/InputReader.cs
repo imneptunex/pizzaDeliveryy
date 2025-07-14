@@ -37,6 +37,9 @@ namespace Synty.AnimationBaseLocomotion.Samples.InputSystem
 
         public Action onWalkToggled;
 
+        public Action onDrawWeaponPerformed;
+
+        public Action onAttackPerformed;
 
         /// <inheritdoc cref="OnEnable" />
         private void OnEnable()
@@ -167,14 +170,24 @@ namespace Synty.AnimationBaseLocomotion.Samples.InputSystem
             onSprintDeactivated?.Invoke();
         }
 
-        void Controls.IPlayerActions.OnDrawWeapon(InputAction.CallbackContext context)
+        public void OnDrawWeapon(InputAction.CallbackContext context)
         {
-            throw new NotImplementedException();
+            if (!context.performed)
+            {
+                return;
+            }
+
+            onDrawWeaponPerformed?.Invoke();
         }
 
-        void Controls.IPlayerActions.OnAttack(InputAction.CallbackContext context)
+        public void OnAttack(InputAction.CallbackContext context)
         {
-            throw new NotImplementedException();
+            if (!context.performed)
+            {
+                return;
+            }
+
+            onAttackPerformed?.Invoke();
         }
     }
 }
