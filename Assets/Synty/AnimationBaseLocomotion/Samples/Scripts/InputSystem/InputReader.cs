@@ -40,6 +40,8 @@ namespace Synty.AnimationBaseLocomotion.Samples.InputSystem
         public Action onDrawWeaponPerformed;
 
         public Action onAttackPerformed;
+        public Action onDodgePerformed;
+
 
         /// <inheritdoc cref="OnEnable" />
         private void OnEnable()
@@ -188,6 +190,17 @@ namespace Synty.AnimationBaseLocomotion.Samples.InputSystem
             }
 
             onAttackPerformed?.Invoke();
+        }
+
+
+        public void OnDodge(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
+                return;
+            }
+
+            onDodgePerformed?.Invoke();
         }
     }
 }

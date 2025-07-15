@@ -6,6 +6,7 @@
 // Sample scripts are included only as examples and are not intended as production-ready.
 
 using Synty.AnimationBaseLocomotion.Samples.InputSystem;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -314,6 +315,12 @@ namespace Synty.AnimationBaseLocomotion.Samples
         private Vector3 _previousRotation;
         private Vector3 _velocity;
 
+        private bool _isDodging;
+        [SerializeField] private AnimationCurve _dodgeCurve;
+        [SerializeField] private float _dodgeDuration = 0.5f;
+
+        
+
         #endregion
 
         #region Base State Variables
@@ -347,6 +354,7 @@ namespace Synty.AnimationBaseLocomotion.Samples
             _inputReader.onCrouchDeactivated += DeactivateCrouch;
             _inputReader.onAimActivated += ActivateAim;
             _inputReader.onAimDeactivated += DeactivateAim;
+            _inputReader.onDodgePerformed += PerformDodge;
 
             _isStrafing = _alwaysStrafe;
 
@@ -356,7 +364,6 @@ namespace Synty.AnimationBaseLocomotion.Samples
         #endregion
 
         #region Aim and Lock-on
-
         /// <summary>
         ///     Activates the aim action of the player.
         /// </summary>
@@ -375,6 +382,38 @@ namespace Synty.AnimationBaseLocomotion.Samples
             _isAiming = false;
             _isStrafing = !_isSprinting && (_alwaysStrafe || _isLockedOn);
         }
+
+
+        private void PerformDodge()
+        {
+            if (_isDodging || _moveDirection.magnitude < 0.1f)
+                return;
+
+            StartCoroutine(DodgeRoutine());
+        }
+
+        private IEnumerator DodgeRoutine()
+        {
+            _isDodging = true;
+            _animator.SetTrigger("dodge");
+
+            float timer = 0f;
+            Vector3 dodgeDirection = _moveDirection.normalized;
+
+            while (timer < _dodgeDuration)
+            {
+                float speed = _dodgeCurve.Evaluate(timer);
+                Vector3 worldDirection = transform.TransformDirection(dodgeDirection);
+                _controller.Move(worldDirection * speed * Time.deltaTime);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            _isDodging = false;
+        }
+
+
+
 
         /// <summary>
         ///     Adds an object to the list of target candidates.

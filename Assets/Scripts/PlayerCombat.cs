@@ -38,12 +38,14 @@ namespace Synty.AnimationBaseLocomotion.Samples.InputSystem
             if (_weaponDrawn)
             {
                 _animator.SetTrigger("sheatWeapon");
+                _animator.SetBool("SwordInHand", false);
                 _equipmentSystem.SheathWeapon();
                 _weaponDrawn = false;
             }
             else
             {
                 _animator.SetTrigger("drawWeapon");
+                _animator.SetBool("SwordInHand", true);
                 _equipmentSystem.DrawWeapon();
                 _weaponDrawn = true;
             }
